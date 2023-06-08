@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Person from './Person';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import AddPerson from './Form/AddPerson';
 
 const PersonListContainer = styled.div`
     display: flex;
@@ -49,6 +50,8 @@ function PersonList() {
                 ))}
                 </tbody>
             </table>
+
+            <AddPerson />
           </PersonListContainer>
       </>
   );
