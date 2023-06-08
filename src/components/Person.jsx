@@ -1,36 +1,86 @@
-import React from 'react';
+import React, { useEffect, useState }  from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import axios from 'axios';
 
 
 const PersonContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  align-items: center;
-  height: 35em;
-  width: 25em;
-  border: 2px solid black;
-  margin-bottom: 1em;
 `;
 
-// const CardImage = styled.img`
-//    object-fit: cover;
-//    height: 20em;
-// `;
 
-const Overview = styled.p`
-  padding: 1em;  
-`;
+function Person() {
+    const {id} = useParams();
 
-function Person(props) {
-    //console.log(props);
+    const [personChoicedata, setpersonChoicedata] = useState([]);
+    const [genreData, setGenreData] = useState([]);
+    const [name, setName] = useState([]);
+ 
+    useEffect(() => {
+      axios.get(`https://localhost:7026/api/personchoice/{personid}?id=${id}`)
+          .then((response) => {
+            setpersonChoicedata((data) => {
+          return response.data;
+        });
+      });
+    }, []);
+
+    useEffect(() => {
+      axios.get(`https://localhost:7026/api/genre`)
+          .then((response) => {
+            setGenreData((setgenreData) => {
+          return response.data;
+        });
+      });
+    }, []);
+
+
+    useEffect(() => {
+      axios.get('https://localhost:7026/api/person')
+        .then((response) => {
+          //console.log(response.data);
+          const person = response.data.find((person) => person.id == id);
+          setName(person.firstName + " " + person.lastName);
+         
+        })
+        .catch((error) => {
+          console.error('Could not load data:', error);
+        });
+    }, [id]);
+
+    //console.log (id);
+    //console.log (personChoicedata);
+    //console.log (genreData);
+
     return (
-        <PersonContainer>
-            {/* <CardImage src={props.poster} alt={props.title} />
-            <h1>{props.title}</h1>
-            <Overview>{props.overview}</Overview> */}
-            <h1>Person</h1>
-            <h1>{props.id}</h1>
+      
+      <PersonContainer>
+          <h1> {name} </h1>
+          <h1> Favourite movie list </h1>
+
+          <table>
+            <tbody>
+              <tr>
+                <th>Genre</th>
+                <th>Rating</th>
+                <th>Movie link</th>
+              </tr>
+                {personChoicedata.map((p) => (
+                    <tr key={p.id}>
+                      <td> 
+                          {genreData.find(g=> g.id == p.genreId).title} 
+                          
+                      </td>
+                      <td> 
+                          {p.rating} 
+                      </td>
+                      <td>{p.movieLink}</td>
+                    </tr>
+                ))}
+              </tbody>
+          </table>
         </PersonContainer>
     );
 }

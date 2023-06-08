@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import PersonList from './components/PersonList';
 import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
+import Person from './components/Person';
 
 const MainContainer = styled.main`
   display: flex;
@@ -28,6 +29,7 @@ function App() {
         
         <Routes>
           <Route path ="/" element={<PersonList />}/>
+          <Route path ="/person/:id" element={<Person />}/>
           <Route path ="*" element={<Error />}/>
 
         </Routes>

@@ -14,8 +14,6 @@ function PersonList() {
 
   const [person, setPerson] = useState([]);
 
-  
-
   useEffect(() => {
     axios.get('https://localhost:7026/api/person')
       .then((response) => {
@@ -29,23 +27,31 @@ function PersonList() {
   }, []);
 
   console.log(person);
-
-    return (
-        <>
-            <h1>PersonList</h1>
-            <PersonListContainer>
-                
+  return (
+      <>
+          <h1>PersonList</h1>
+          <PersonListContainer>
+            <table>
+            <tbody>
+              <tr>
+                <th>Name</th>
+                <th>Email Address</th>
+              </tr>
                 {person.map((p) => (
-                    <Link to={`/person/${p.id}`} key={p.id}>
-                        <h3>Name: {p.firstName + " " +p.lastName}</h3>
-                        <h3>Name: {p.emailAddress}</h3>
-                        <Person title={p.id} />
-                    </Link>
+                    <tr  key={p.id}>
+                      <td> 
+                          <Link to={`/person/${p.id}`}>
+                            Name: {p.firstName + " " +p.lastName} 
+                          </Link>
+                        </td>
+                      <td>{p.emailAddress}</td>
+                    </tr>
                 ))}
-                
-            </PersonListContainer>
-        </>
-    );
+                </tbody>
+            </table>
+          </PersonListContainer>
+      </>
+  );
 }
 
 export default PersonList;
