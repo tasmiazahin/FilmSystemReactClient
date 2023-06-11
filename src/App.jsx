@@ -7,6 +7,7 @@ import PersonList from './components/PersonList';
 import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import Person from './components/Person';
+import GenreList from './components/GenreList';
 
 const MainContainer = styled.main`
   display: flex;
@@ -30,6 +31,7 @@ function App() {
         <Routes>
           <Route path ="/" element={<PersonList />}/>
           <Route path ="/person/:id" element={<Person />}/>
+          <Route path ="/genre" element={<GenreList />}/>
           <Route path ="*" element={<Error />}/>
 
         </Routes>

@@ -24,7 +24,7 @@ export const Navbar = () => {
   return (
     <NavbarContainer>
         <Link to="/" className="nav-link">Home</Link>
-        <Link to="/Contact" className="nav-link">Contact</Link>
+        <Link to="/Genre" className="nav-link">Genre</Link>
     </NavbarContainer>
   )
 }

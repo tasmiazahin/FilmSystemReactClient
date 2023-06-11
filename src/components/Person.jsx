@@ -2,6 +2,7 @@ import React, { useEffect, useState }  from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
+import AddPersonChoice from './Form/AddPersonChoice';
 
 
 const PersonContainer = styled.div`
@@ -81,6 +82,7 @@ function Person() {
                 ))}
               </tbody>
           </table>
+          <AddPersonChoice />
         </PersonContainer>
     );
 }
