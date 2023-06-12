@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components';
 import {Link} from 'react-router-dom'
 
+//Narvar styles
 const NavbarContainer = styled.nav`
     height: 10vh;
     background-color : gray;

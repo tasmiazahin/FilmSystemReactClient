@@ -12,6 +12,7 @@ const PersonListContainer = styled.div`
 `;
 
 
+// Styles for table 
 const StyledTable = styled.table`
   font-family: arial, sans-serif;
   border-collapse: collapse;
@@ -46,10 +47,12 @@ function PersonList() {
   const [page, setPage] = React.useState(1);
 
   useEffect(() => {
+    //Query to get all person.
     //axios.get('https://localhost:7026/api/person')
-    // Query based on page number 
+    // Query persons based on page number 
     axios.get('https://localhost:7026/api/person/'+ page)
       .then((response) => {
+        // Response from the server
         console.log(response.data);
         setPerson(response.data);
        
@@ -59,10 +62,12 @@ function PersonList() {
       });
   }, [page]);
 
-  
+  // Next page
   const nextPage = () => {
     setPage((prevState) => prevState + 1);
   }
+
+  // Previous page
   const prevPage = () => {
       setPage((prevState) => prevState - 1);
   }
@@ -70,7 +75,7 @@ function PersonList() {
   return (
       <>
           <h1>PersonList</h1>
-          
+          {/* Disable previous button on page number 1 */}
           <button disabled={page === 1} onClick={prevPage}>PREV PAGE</button>
           <button onClick={nextPage}>NEXT PAGE</button><br/><br/>
           <PersonListContainer>
@@ -92,7 +97,7 @@ function PersonList() {
                   ))}
                   </TBody>
               </StyledTable>
-
+              {/*  Add person*/}
               <AddPerson />
           </PersonListContainer>
       </>

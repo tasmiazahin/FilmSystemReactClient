@@ -10,6 +10,8 @@ const GenreListContainer = styled.div`
     flex-wrap: wrap;
 `;
 
+// Styles for tabke
+
 const StyledTable = styled.table`
   font-family: arial, sans-serif;
   border-collapse: collapse;
@@ -43,8 +45,10 @@ function GenreList() {
   const [genre, setGenre] = useState([]);
 
   useEffect(() => {
+    // Get all genre
     axios.get('https://localhost:7026/api/genre')
       .then((response) => {
+        // Get response from server
         console.log(response.data);
         setGenre(response.data);
        
@@ -72,6 +76,7 @@ function GenreList() {
                   ))}
               </TBody>
             </StyledTable>
+            {/* Add genre  */}
             <AddGenre/>
           </GenreListContainer>
       </>

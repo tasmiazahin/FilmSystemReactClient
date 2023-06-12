@@ -20,6 +20,7 @@ function Person() {
     const [name, setName] = useState([]);
  
     useEffect(() => {
+      // get persons favourite movies 
       axios.get(`https://localhost:7026/api/personchoice/{personid}?id=${id}`)
           .then((response) => {
             setpersonChoicedata((data) => {
@@ -28,6 +29,7 @@ function Person() {
       });
     }, []);
 
+    // get all genre
     useEffect(() => {
       axios.get(`https://localhost:7026/api/genre`)
           .then((response) => {
@@ -38,6 +40,7 @@ function Person() {
     }, []);
 
 
+    // get all persons 
     useEffect(() => {
       axios.get('https://localhost:7026/api/person')
         .then((response) => {
@@ -67,8 +70,8 @@ function Person() {
                 {personChoicedata.map((p) => (
                     <tr key={p.id}>
                       <td> 
-                          {genreData.find(g=> g.id == p.genreId).title} 
-                          
+                        {/*Show genre title instead of Id  */}
+                        {genreData.find(g=> g.id == p.genreId).title} 
                       </td>
                       <td> 
                           {p.rating} 
@@ -78,6 +81,7 @@ function Person() {
                 ))}
               </tbody>
           </table>
+          {/* Add person favourite movie  */}
           <AddPersonChoice />
         </PersonContainer>
     );

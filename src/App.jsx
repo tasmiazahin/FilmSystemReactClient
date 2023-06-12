@@ -26,8 +26,10 @@ function App() {
 
   return (
       <BrowserRouter>
-          <Navbar/>
-        
+        {/* Nevigation bar for the site  */}
+        <Navbar/>
+
+        {/* Routes for the site */}
         <Routes>
           <Route path ="/" element={<PersonList />}/>
           <Route path ="/person/:id" element={<Person />}/>
