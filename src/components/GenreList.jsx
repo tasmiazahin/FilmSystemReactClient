@@ -10,6 +10,34 @@ const GenreListContainer = styled.div`
     flex-wrap: wrap;
 `;
 
+const StyledTable = styled.table`
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+`;
+
+const TBody = styled.tbody`
+ // custom css goes here
+`;
+
+const TR = styled.tr`
+  &:nth-child(even) {
+    background-color: #dddddd;
+  }
+`;
+
+export const TH = styled.th`
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+`;
+
+export const TD = styled.td`
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+`;
+
 function GenreList() {
 
   const [genre, setGenre] = useState([]);
@@ -31,20 +59,20 @@ function GenreList() {
       <>
           <h1>GenreList</h1>
           <GenreListContainer>
-            <table>
-            <tbody>
-              <tr>
-                <th>Title</th>
-                <th>Description</th>
-              </tr>
-                {genre.map((g) => (
-                    <tr  key={g.id}>
-                      <td>{g.title}</td>
-                      <td>{g.description}</td>
-                    </tr>
-                ))}
-                </tbody>
-            </table>
+            <StyledTable>
+              <TBody>
+                <TR>
+                  <TH>Title</TH>
+                  <TH>Description</TH>
+                </TR>
+                  {genre.map((g) => (
+                      <TR  key={g.id}>
+                        <TD>{g.title}</TD>
+                        <TD>{g.description}</TD>
+                      </TR>
+                  ))}
+              </TBody>
+            </StyledTable>
             <AddGenre/>
           </GenreListContainer>
       </>

@@ -11,6 +11,35 @@ const PersonListContainer = styled.div`
     flex-wrap: wrap;
 `;
 
+
+const StyledTable = styled.table`
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+`;
+
+const TBody = styled.tbody`
+ // custom css goes here
+`;
+
+const TR = styled.tr`
+  &:nth-child(even) {
+    background-color: #dddddd;
+  }
+`;
+
+export const TH = styled.th`
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+`;
+
+export const TD = styled.td`
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+`;
+
 function PersonList() {
 
   const [person, setPerson] = useState([]);
@@ -45,7 +74,7 @@ function PersonList() {
           <button disabled={page === 1} onClick={prevPage}>PREV PAGE</button>
           <button onClick={nextPage}>NEXT PAGE</button><br/><br/>
           <PersonListContainer>
-            <table>
+            {/* <table>
             <tbody>
               <tr>
                 <th>Name</th>
@@ -62,7 +91,26 @@ function PersonList() {
                     </tr>
                 ))}
                 </tbody>
-            </table>
+            </table> */}
+
+          <StyledTable>
+            <TBody>
+              <TR>
+                <TH>Name</TH>
+                <TH>Email Address</TH>
+              </TR>
+                {person.map((p) => (
+                    <TR  key={p.id}>
+                      <TD> 
+                          <Link to={`/person/${p.id}`}>
+                            Name: {p.firstName + " " +p.lastName} 
+                          </Link>
+                        </TD>
+                      <TD>{p.emailAddress}</TD>
+                    </TR>
+                ))}
+                </TBody>
+            </StyledTable>
 
             <AddPerson />
           </PersonListContainer>
