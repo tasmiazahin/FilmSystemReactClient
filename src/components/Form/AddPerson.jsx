@@ -36,8 +36,6 @@ export default function AddPerson() {
             firstName, lastName, emailAddress
         })
         .then((response) => {
-            console.log(response.data);
-
             // CLear form fields 
             setFirstName('');
             setLastName('');

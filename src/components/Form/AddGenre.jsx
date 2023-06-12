@@ -31,7 +31,6 @@ export default function AddGenre() {
             title, description
         })
         .then((response) => {
-            console.log(response.data);
 
             // CLear form fields 
             setTitle('');

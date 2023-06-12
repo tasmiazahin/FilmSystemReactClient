@@ -54,7 +54,6 @@ function GenreList() {
       });
   }, []);
 
-  console.log(genre);
   return (
       <>
           <h1>GenreList</h1>

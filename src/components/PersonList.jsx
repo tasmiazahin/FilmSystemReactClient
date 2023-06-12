@@ -47,6 +47,7 @@ function PersonList() {
 
   useEffect(() => {
     //axios.get('https://localhost:7026/api/person')
+    // Query based on page number 
     axios.get('https://localhost:7026/api/person/'+ page)
       .then((response) => {
         console.log(response.data);
@@ -59,7 +60,6 @@ function PersonList() {
   }, [page]);
 
   
-  //console.log(person);
   const nextPage = () => {
     setPage((prevState) => prevState + 1);
   }
@@ -74,45 +74,26 @@ function PersonList() {
           <button disabled={page === 1} onClick={prevPage}>PREV PAGE</button>
           <button onClick={nextPage}>NEXT PAGE</button><br/><br/>
           <PersonListContainer>
-            {/* <table>
-            <tbody>
-              <tr>
-                <th>Name</th>
-                <th>Email Address</th>
-              </tr>
-                {person.map((p) => (
-                    <tr  key={p.id}>
-                      <td> 
-                          <Link to={`/person/${p.id}`}>
-                            Name: {p.firstName + " " +p.lastName} 
-                          </Link>
-                        </td>
-                      <td>{p.emailAddress}</td>
-                    </tr>
-                ))}
-                </tbody>
-            </table> */}
+            <StyledTable>
+              <TBody>
+                <TR>
+                  <TH>Name</TH>
+                  <TH>Email Address</TH>
+                </TR>
+                  {person.map((p) => (
+                      <TR  key={p.id}>
+                        <TD> 
+                            <Link to={`/person/${p.id}`}>
+                              Name: {p.firstName + " " +p.lastName} 
+                            </Link>
+                          </TD>
+                        <TD>{p.emailAddress}</TD>
+                      </TR>
+                  ))}
+                  </TBody>
+              </StyledTable>
 
-          <StyledTable>
-            <TBody>
-              <TR>
-                <TH>Name</TH>
-                <TH>Email Address</TH>
-              </TR>
-                {person.map((p) => (
-                    <TR  key={p.id}>
-                      <TD> 
-                          <Link to={`/person/${p.id}`}>
-                            Name: {p.firstName + " " +p.lastName} 
-                          </Link>
-                        </TD>
-                      <TD>{p.emailAddress}</TD>
-                    </TR>
-                ))}
-                </TBody>
-            </StyledTable>
-
-            <AddPerson />
+              <AddPerson />
           </PersonListContainer>
       </>
   );

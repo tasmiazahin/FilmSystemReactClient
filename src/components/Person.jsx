@@ -51,10 +51,6 @@ function Person() {
         });
     }, [id]);
 
-    //console.log (id);
-    //console.log (personChoicedata);
-    //console.log (genreData);
-
     return (
       
       <PersonContainer>
