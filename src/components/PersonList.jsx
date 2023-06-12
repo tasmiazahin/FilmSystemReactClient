@@ -14,9 +14,11 @@ const PersonListContainer = styled.div`
 function PersonList() {
 
   const [person, setPerson] = useState([]);
+  const [page, setPage] = React.useState(1);
 
   useEffect(() => {
-    axios.get('https://localhost:7026/api/person')
+    //axios.get('https://localhost:7026/api/person')
+    axios.get('https://localhost:7026/api/person/'+ page)
       .then((response) => {
         console.log(response.data);
         setPerson(response.data);
@@ -25,12 +27,23 @@ function PersonList() {
       .catch((error) => {
         console.error('Could not load data:', error);
       });
-  }, []);
+  }, [page]);
 
-  console.log(person);
+  
+  //console.log(person);
+  const nextPage = () => {
+    setPage((prevState) => prevState + 1);
+  }
+  const prevPage = () => {
+      setPage((prevState) => prevState - 1);
+  }
+
   return (
       <>
           <h1>PersonList</h1>
+          
+          <button disabled={page === 1} onClick={prevPage}>PREV PAGE</button>
+          <button onClick={nextPage}>NEXT PAGE</button><br/><br/>
           <PersonListContainer>
             <table>
             <tbody>
